@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Soft, warm pastel palette for crochet artisan brand */
+    --background: 30 40% 98%;
+    --foreground: 25 30% 20%;
+
+    --card: 30 30% 97%;
+    --card-foreground: 25 30% 20%;
+
+    --popover: 30 30% 97%;
+    --popover-foreground: 25 30% 20%;
+
+    /* Soft peach - main brand color */
+    --primary: 20 70% 75%;
+    --primary-foreground: 25 30% 15%;
+
+    /* Warm cream */
+    --secondary: 35 45% 92%;
+    --secondary-foreground: 25 30% 25%;
+
+    /* Soft blush pink */
+    --muted: 350 30% 94%;
+    --muted-foreground: 25 20% 45%;
+
+    /* Sage mint accent */
+    --accent: 150 30% 85%;
+    --accent-foreground: 150 30% 25%;
+
+    /* Rose pink for highlights */
+    --rose: 350 50% 80%;
+    --rose-foreground: 350 40% 25%;
+
+    /* Warm brown for text emphasis */
+    --warm: 25 40% 35%;
+
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 25% 88%;
+    --input: 30 25% 88%;
+    --ring: 20 70% 75%;
+
+    --radius: 1rem;
+
+    /* Custom gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(30 40% 98%) 0%, hsl(350 30% 96%) 50%, hsl(20 50% 95%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(30 30% 99%) 0%, hsl(30 30% 97%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(20 70% 80%) 0%, hsl(350 50% 82%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(25 30% 20% / 0.08);
+    --shadow-card: 0 8px 30px -8px hsl(25 30% 20% / 0.1);
+    --shadow-hover: 0 12px 40px -12px hsl(25 30% 20% / 0.15);
+
+    /* Typography */
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Nunito', system-ui, sans-serif;
+
+    --sidebar-background: 30 40% 98%;
+    --sidebar-foreground: 25 30% 20%;
+    --sidebar-primary: 20 70% 75%;
+    --sidebar-primary-foreground: 25 30% 15%;
+    --sidebar-accent: 150 30% 85%;
+    --sidebar-accent-foreground: 150 30% 25%;
+    --sidebar-border: 30 25% 88%;
+    --sidebar-ring: 20 70% 75%;
+  }
+
+  .dark {
+    --background: 25 20% 10%;
+    --foreground: 30 30% 92%;
+
+    --card: 25 20% 12%;
+    --card-foreground: 30 30% 92%;
+
+    --popover: 25 20% 12%;
+    --popover-foreground: 30 30% 92%;
+
+    --primary: 20 60% 65%;
+    --primary-foreground: 25 30% 10%;
+
+    --secondary: 25 20% 18%;
+    --secondary-foreground: 30 30% 88%;
+
+    --muted: 25 15% 20%;
+    --muted-foreground: 30 20% 60%;
+
+    --accent: 150 25% 30%;
+    --accent-foreground: 150 30% 90%;
+
+    --rose: 350 40% 50%;
+    --rose-foreground: 350 20% 95%;
+
+    --warm: 30 30% 75%;
+
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 25 15% 22%;
+    --input: 25 15% 22%;
+    --ring: 20 60% 65%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(25 20% 10%) 0%, hsl(25 15% 12%) 50%, hsl(20 20% 11%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(25 20% 14%) 0%, hsl(25 20% 12%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(20 50% 45%) 0%, hsl(350 40% 45%) 100%);
+
+    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
+    --shadow-card: 0 8px 30px -8px hsl(0 0% 0% / 0.4);
+    --shadow-hover: 0 12px 40px -12px hsl(0 0% 0% / 0.5);
+
+    --sidebar-background: 25 20% 10%;
+    --sidebar-foreground: 30 30% 92%;
+    --sidebar-primary: 20 60% 65%;
+    --sidebar-primary-foreground: 25 30% 10%;
+    --sidebar-accent: 150 25% 30%;
+    --sidebar-accent-foreground: 150 30% 90%;
+    --sidebar-border: 25 15% 22%;
+    --sidebar-ring: 20 60% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  .text-warm {
+    color: hsl(var(--warm));
+  }
+
+  .bg-rose {
+    background-color: hsl(var(--rose));
+  }
+
+  .text-rose {
+    color: hsl(var(--rose));
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.5s ease-out forwards;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
