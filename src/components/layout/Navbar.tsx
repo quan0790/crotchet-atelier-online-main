@@ -6,6 +6,9 @@ import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { cn } from '@/lib/utils';
 
+/* ✅ Import your logo */
+import Logo from '@/assets/logo.jpg';
+
 const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'Shop', path: '/shop' },
@@ -24,6 +27,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <nav className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between lg:h-20">
+
           {/* Mobile menu button */}
           <button
             className="lg:hidden p-2 -ml-2"
@@ -33,9 +37,13 @@ export function Navbar() {
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
 
-          {/* Logo */}
+          {/* ✅ Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <span className="text-2xl">🧶</span>
+            <img
+              src={Logo}
+              alt="Crotchet Atelier Logo"
+              className="h-10 w-10 object-cover rounded-full shadow-md border"
+            />
             <span className="font-serif text-xl font-semibold tracking-tight lg:text-2xl">
               Crotchet Atelier
             </span>
@@ -64,6 +72,7 @@ export function Navbar() {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
+
             {/* Search */}
             <Button
               variant="ghost"
@@ -114,6 +123,7 @@ export function Navbar() {
                 Account
               </span>
             </Button>
+
           </div>
         </div>
 

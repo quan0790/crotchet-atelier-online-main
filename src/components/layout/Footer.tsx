@@ -1,20 +1,19 @@
 // src/components/layout/Footer.tsx
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Mail, MapPin, Phone, Twitter } from 'lucide-react';
+import { Instagram, Mail, MapPin, Phone } from 'lucide-react';
+import { FaTiktok, FaWhatsapp } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
-import { FaTiktok, FaSnapchatGhost } from 'react-icons/fa';
 import { products, categories } from '@/data/products';
+import logo from '@/assets/logo.jpg';
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   // Socials
   const socials = [
-    { icon: <Instagram className="h-4 w-4" />, href: 'https://www.instagram.com', name: 'Instagram' },
-    { icon: <FaTiktok className="h-4 w-4" />, href: 'https://www.tiktok.com', name: 'TikTok' },
-    { icon: <FaSnapchatGhost className="h-4 w-4" />, href: 'https://www.snapchat.com', name: 'Snapchat' },
-    { icon: <Twitter className="h-4 w-4" />, href: 'https://twitter.com', name: 'X' },
-    { icon: <Mail className="h-4 w-4" />, href: 'mailto:hello@crotchetatelier.com', name: 'Email' },
+    { icon: <Instagram className="h-4 w-4" />, href: 'https://www.instagram.com/crochets_atelier?igsh=MXF0enNuMm9nczl4ZA==', name: 'Instagram' },
+    { icon: <FaTiktok className="h-4 w-4" />, href: 'https://www.tiktok.com/@becky_kay14?_r=1&_t=ZM-91xIhcAIg5T', name: 'TikTok' },
+    { icon: <FaWhatsapp className="h-4 w-4" />, href: 'https://wa.me/254708353369', name: 'WhatsApp' },
   ];
 
   // Quick links dynamically
@@ -39,7 +38,7 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <span className="text-3xl">🧶</span>
+              <img src={logo} alt="Crotchet Atelier Logo" className="h-10 w-auto" />
               <span className="font-serif text-xl font-semibold">Crotchet Atelier</span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed mb-4">

@@ -1,117 +1,118 @@
-import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { Button } from "../ui/button";
+
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import { Zoom, Thumbnails } from "yet-another-react-lightbox/plugins";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+
+// ✅ Use relative paths with no spaces
+import Hero1 from '../../assets/products/dress.jpg';
+import Hero2 from '../../assets/products/bikiniset.jpg';
+import Hero3 from '../../assets/products/becky.jpg';
+import Hero4 from '../../assets/products/bag1.jpg';
+import Hero5 from '../../assets/products/bag2.jpg';
+import Hero6 from '../../assets/products/dress2.jpg';
+import HeroMobile from '../../assets/products/dress2.jpg';
 
 export function HeroSection() {
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0);
+
+  const images = [Hero1, Hero2, Hero3, Hero4, Hero5, Hero6];
+
   return (
     <section className="relative overflow-hidden gradient-hero">
-      {/* Decorative elements */}
+      {/* Background Glow Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/20 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/30 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-rose/10 rounded-full blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/30 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-rose/10 rounded-full blur-3xl animate-pulse" />
       </div>
 
       <div className="container mx-auto px-4 py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
-          <div className="relative z-10 text-center lg:text-left animate-fade-up">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/50 text-accent-foreground text-sm font-medium mb-6">
+          {/* LEFT TEXT CONTENT */}
+          <div className="relative z-10 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/40 backdrop-blur-md text-accent-foreground text-sm font-medium mb-6 shadow-lg">
               <Sparkles className="h-4 w-4" />
               Handcrafted with Love
             </div>
-            
+
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
-              <span className="text-foreground">Artisan</span>
-              <br />
-              <span className="text-primary">Crochet</span>
-              <br />
+              <span className="text-foreground">Artisan</span><br />
+              <span className="text-primary bg-gradient-to-r from-pink-500 via-rose-400 to-primary bg-clip-text text-transparent">
+                Crochet
+              </span><br />
               <span className="text-foreground">Treasures</span>
             </h1>
-            
+
             <p className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
-              Discover unique, handmade crochet creations that bring warmth, beauty, and a touch of artisan craftsmanship to your world.
+              Discover unique, handmade crochet creations designed to bring warmth, beauty, and craftsmanship to your world.
             </p>
 
+            {/* BUTTONS */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/shop">
-                <Button variant="hero" size="xl" className="w-full sm:w-auto group">
+                <Button variant="hero" size="xl" className="w-full sm:w-auto">
                   Shop Collection
-                  <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="h-5 w-5 ml-2" />
                 </Button>
               </Link>
+
               <Link to="/categories">
                 <Button variant="outline" size="xl" className="w-full sm:w-auto">
                   Browse Categories
                 </Button>
               </Link>
             </div>
+          </div>
 
-            {/* Stats */}
-            <div className="flex justify-center lg:justify-start gap-8 mt-12">
-              {[
-                { value: '100+', label: 'Happy Customers' },
-                { value: '100%', label: 'Handmade' },
-                { value: '25+', label: 'Unique Designs' },
-              ].map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <p className="font-serif text-2xl lg:text-3xl font-bold text-primary">{stat.value}</p>
-                  <p className="text-xs text-muted-foreground">{stat.label}</p>
+          {/* IMAGE GRID */}
+          <div className="relative z-10 hidden lg:block">
+            <div className="grid grid-cols-3 gap-4">
+              {images.map((img, i) => (
+                <div
+                  key={i}
+                  className="rounded-2xl overflow-hidden shadow-lg bg-white/10 backdrop-blur-md hover:scale-105 transition-all duration-500 cursor-pointer"
+                  onClick={() => { setSelectedImage(i); setIsLightboxOpen(true); }}
+                >
+                  <img
+                    src={img}
+                    alt={`Crochet item ${i + 1}`}
+                    className="w-full h-full object-cover hover:scale-110 transition-all duration-500"
+                  />
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Image Grid */}
-          <div className="relative z-10 hidden lg:block">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <div className="aspect-[3/4] rounded-3xl overflow-hidden shadow-card animate-float">
-                  <img
-                    src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop"
-                    alt="Crochet bag"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="aspect-square rounded-2xl overflow-hidden shadow-soft">
-                  <img
-                    src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop"
-                    alt="Crochet toy"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-              <div className="space-y-4 pt-8">
-                <div className="aspect-square rounded-2xl overflow-hidden shadow-soft">
-                  <img
-                    src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=300&h=300&fit=crop"
-                    alt="Crochet flowers"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="aspect-[3/4] rounded-3xl overflow-hidden shadow-card animate-float" style={{ animationDelay: '2s' }}>
-                  <img
-                    src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&h=500&fit=crop"
-                    alt="Crochet clothing"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile Hero Image */}
+          {/* MOBILE HERO IMAGE */}
           <div className="lg:hidden relative z-10">
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-card">
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-card cursor-pointer"
+                 onClick={() => { setSelectedImage(0); setIsLightboxOpen(true); }}>
               <img
-                src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&h=600&fit=crop"
-                alt="Handcrafted crochet items"
-                className="w-full h-full object-cover"
+                src={HeroMobile}
+                alt="Crochet mobile"
+                className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
               />
             </div>
           </div>
         </div>
       </div>
+
+      {/* Lightbox */}
+      {isLightboxOpen && (
+        <Lightbox
+          open={isLightboxOpen}
+          close={() => setIsLightboxOpen(false)}
+          slides={images.map(img => ({ src: img }))}
+          plugins={[Zoom, Thumbnails]}
+          index={selectedImage}
+        />
+      )}
     </section>
   );
 }

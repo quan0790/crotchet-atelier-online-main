@@ -4,7 +4,7 @@ import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import { useCurrency } from "@/context/CurrencyContext";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp, FaTiktok } from "react-icons/fa";
 import { Instagram, Mail, Phone, Truck, Shield, RefreshCw } from "lucide-react";
 
 export default function Checkout() {
@@ -41,7 +41,7 @@ export default function Checkout() {
       message += `\n`;
     });
     message += `\nSubtotal: ${formatPrice(subtotal)}`;
-    message += `\nShipping:  Fast & Secure   Delivery `;
+    message += `\nShipping: Fast & Secure Delivery`;
     message += `\nTotal: ${formatPrice(total)}`;
     if (name) message += `\nName: ${name}`;
     if (city) message += `\nCity: ${city}`;
@@ -49,8 +49,9 @@ export default function Checkout() {
   };
 
   const instagramDM = `https://www.instagram.com/direct/inbox/?username=crochets_atelier`;
+  const tiktokLink = `https://www.tiktok.com/@becky_kay14?_r=1&_t=ZM-91xIhcAIg5T`;
   const emailLink = "mailto:crochetsatelier@example.com?subject=Order%20Inquiry";
-  const callLink = "tel:+254790264792";
+  const callLink = "tel:+254708353369";
 
   return (
     <Layout>
@@ -86,7 +87,7 @@ export default function Checkout() {
             ))}
             <div className="flex justify-between text-sm">
               <span>Shipping</span>
-              <span> Fast & Secure   Delivery </span>
+              <span>Fast & Secure Delivery</span>
             </div>
             <div className="flex justify-between font-semibold text-lg border-t border-border pt-2">
               <span>Total</span>
@@ -112,6 +113,12 @@ export default function Checkout() {
               </Button>
             </a>
 
+            <a href={tiktokLink} target="_blank" rel="noopener noreferrer" title="TikTok">
+              <Button variant="ghost" size="lg" className="hover:scale-110 transition-transform duration-300">
+                <FaTiktok className="h-6 w-6 text-black" />
+              </Button>
+            </a>
+
             <a href={emailLink} target="_blank" rel="noopener noreferrer" title="Email">
               <Button variant="ghost" size="lg" className="hover:scale-110 transition-transform duration-300">
                 <Mail className="h-6 w-6 text-blue-500" />
@@ -128,7 +135,7 @@ export default function Checkout() {
           {/* Trust Badges */}
           <div className="grid grid-cols-3 gap-4 p-4 bg-secondary/50 rounded-2xl mt-6">
             {[
-              { icon: Truck, label: ' Fast & Secure   Delivery ', sub: 'Nationwide & Worldwide' },
+              { icon: Truck, label: 'Fast & Secure Delivery', sub: 'Nationwide & Worldwide' },
               { icon: Shield, label: 'Secure Payment', sub: '100% Protected' },
               { icon: RefreshCw, label: 'Easy Returns', sub: '30 Day Policy' },
             ].map((item) => (

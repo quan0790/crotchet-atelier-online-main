@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Mail, Sparkles, Instagram, Twitter } from 'lucide-react';
-import { FaTiktok, FaSnapchatGhost, FaWhatsapp } from 'react-icons/fa';
+import { Mail, Sparkles, Instagram } from 'lucide-react';
+import { FaTiktok, FaWhatsapp } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/hooks/use-toast';
 
@@ -8,14 +8,27 @@ export function NewsletterSection() {
   const [email, setEmail] = useState('');
 
   const socials = [
-    { icon: <FaWhatsapp className="h-4 w-4" />, href: 'https://wa.me/254790264792', name: 'WhatsApp', hover: 'text-green-500' },
-    { icon: <Instagram className="h-4 w-4" />, href: 'https://www.instagram.com/crochets_atelier', name: 'Instagram', hover: 'text-pink-500' },
-    { icon: <FaTiktok className="h-4 w-4" />, href: 'https://www.tiktok.com/@crochets_atelier', name: 'TikTok', hover: 'text-black' },
-    { icon: <Twitter className="h-4 w-4" />, href: 'https://twitter.com/crochets_atelier', name: 'X', hover: 'text-blue-500' },
-    { icon: <FaSnapchatGhost className="h-4 w-4" />, href: 'https://www.snapchat.com', name: 'Snapchat', hover: 'text-yellow-400' },
+    {
+      icon: <FaWhatsapp className="h-4 w-4" />,
+      href: 'https://wa.me/254708353369',
+      name: 'WhatsApp',
+      hover: 'text-green-500'
+    },
+    {
+      icon: <Instagram className="h-4 w-4" />,
+      href: 'https://www.instagram.com/crochets_atelier?igsh=MXF0enNuMm9nczl4ZA==',
+      name: 'Instagram',
+      hover: 'text-pink-500'
+    },
+    {
+      icon: <FaTiktok className="h-4 w-4" />,
+      href: 'https://www.tiktok.com/@becky_kay14?_r=1&_t=ZM-91xIhcAIg5T',
+      name: 'TikTok',
+      hover: 'text-black'
+    },
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
       toast({
