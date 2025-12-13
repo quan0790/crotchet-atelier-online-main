@@ -15,6 +15,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 // ✅ Use relative paths with no spaces
 import Hero1 from '../../assets/products/dress.jpg';
@@ -90,6 +91,11 @@ export function HeroSection() {
           <div className="lg:hidden relative z-10 w-full max-w-sm mx-auto">
             <Carousel 
               className="w-full"
+              plugins={[
+                Autoplay({
+                  delay: 3000,
+                }),
+              ]}
               opts={{
                 align: "start",
                 loop: true,
