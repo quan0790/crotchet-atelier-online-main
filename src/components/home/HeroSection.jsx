@@ -8,6 +8,14 @@ import "yet-another-react-lightbox/styles.css";
 import { Zoom, Thumbnails } from "yet-another-react-lightbox/plugins";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
 // ✅ Use relative paths with no spaces
 import Hero1 from '../../assets/products/dress.jpg';
 import Hero2 from '../../assets/products/bikiniset.jpg';
@@ -59,7 +67,7 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* IMAGE GRID */}
+          {/* IMAGE GRID - DESKTOP */}
           <div className="relative z-10 hidden lg:block">
             <div className="grid grid-cols-3 gap-4">
               {images.map((img, i) => (
@@ -78,16 +86,36 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* MOBILE HERO IMAGE */}
-          <div className="lg:hidden relative z-10">
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-card cursor-pointer"
-                 onClick={() => { setSelectedImage(0); setIsLightboxOpen(true); }}>
-              <img
-                src={HeroMobile}
-                alt="Crochet mobile"
-                className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
-              />
-            </div>
+          {/* MOBILE HERO IMAGE CAROUSEL */}
+          <div className="lg:hidden relative z-10 w-full max-w-sm mx-auto">
+            <Carousel 
+              className="w-full"
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+            >
+              <CarouselContent>
+                {images.map((img, i) => (
+                  <CarouselItem key={i}>
+                    <div className="p-1">
+                      <div 
+                        className="aspect-[4/3] rounded-3xl overflow-hidden shadow-card cursor-pointer"
+                        onClick={() => { setSelectedImage(i); setIsLightboxOpen(true); }}
+                      >
+                        <img
+                          src={img}
+                          alt={`Crochet item ${i + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-2" />
+              <CarouselNext className="right-2" />
+            </Carousel>
           </div>
         </div>
       </div>
